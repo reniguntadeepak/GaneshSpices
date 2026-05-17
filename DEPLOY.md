@@ -12,17 +12,18 @@ Default admin after seed: **admin** / **admin123**
 ## 2. API on Render
 
 1. Connect this repo to [Render](https://render.com).
-2. Use `render.yaml` or create a **Web Service** with **one** of these setups:
+2. Create a **Web Service** with these settings (must match exactly):
 
-   **Option A (recommended if deploy fails):** Root Directory = empty / `.`
-   - **Build Command:** `npm run render:build`
-   - **Start Command:** `npm run render:start`
+   | Setting | Value |
+   |---------|--------|
+   | **Root Directory** | `server` |
+   | **Build Command** | `npm ci` |
+   | **Start Command** | `npm start` |
+   | **NODE_VERSION** (env) | `20` |
 
-   **Option B:** Root Directory = `server`
-   - **Build Command:** `npm ci`
-   - **Start Command:** `npm start`
+   Do **not** use `npm run render:build` when Root Directory is already `server` — that skips installing API dependencies and causes `Cannot find package express` on start.
 
-   Always set **Environment:** `NODE_VERSION` = `20`
+   If Root Directory is empty (repo root), use Build: `npm run render:build` and Start: `npm run render:start` instead.
 3. Set environment variables:
 
 | Variable | Example |

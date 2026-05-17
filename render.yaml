@@ -2,12 +2,9 @@ services:
   - type: web
     name: ganesh-spices-api
     runtime: node
-    # Repo root deploy (works if Root Directory is empty on dashboard):
-    buildCommand: npm run render:build
-    startCommand: npm run render:start
-    # Alternative: set Root Directory to "server", then use:
-    # buildCommand: npm ci
-    # startCommand: npm start
+    rootDir: server
+    buildCommand: npm ci
+    startCommand: npm start
     healthCheckPath: /api/health
     envVars:
       - key: NODE_VERSION
