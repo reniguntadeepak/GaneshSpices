@@ -1,4 +1,14 @@
-import 'dotenv/config';
+import { existsSync } from 'fs';
+import { dirname, join } from 'path';
+import { fileURLToPath } from 'url';
+
+// Load .env only locally; Render injects env vars (no .env file on host)
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const envPath = join(__dirname, '../.env');
+if (existsSync(envPath)) {
+  await import('dotenv/config');
+}
+
 import express from 'express';
 import cors from 'cors';
 import authRoutes from './routes/auth.js';
