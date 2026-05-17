@@ -7,7 +7,6 @@
     "node": ">=20 <21"
   },
   "scripts": {
-    "prestart": "test -f node_modules/express/package.json || npm ci",
     "start": "node src/index.js",
     "dev": "node --watch src/index.js",
     "hash": "node scripts/generate-seed-hash.js",
