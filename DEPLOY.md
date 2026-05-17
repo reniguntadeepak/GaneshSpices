@@ -16,14 +16,18 @@ Default admin after seed: **admin** / **admin123**
 
    | Setting | Value |
    |---------|--------|
+   | **Root Directory** | *(leave empty)* |
+   | **Build Command** | `npm ci --prefix server` |
+   | **Start Command** | `npm start --prefix server` |
+   | **NODE_VERSION** (env) | `20` |
+
+   **Important:** If your deploy log shows paths like `/opt/render/project/src/server/...`, you must use the table above (repo root + `--prefix server`). Do **not** set Root Directory to `server` and also use `--prefix server` — pick one layout only.
+
+   Alternative (only if Root Directory is `server`):
+
    | **Root Directory** | `server` |
    | **Build Command** | `npm ci` |
    | **Start Command** | `npm start` |
-   | **NODE_VERSION** (env) | `20` |
-
-   Do **not** use `npm run render:build` when Root Directory is already `server` — that skips installing API dependencies and causes `Cannot find package express` on start.
-
-   If Root Directory is empty (repo root), use Build: `npm run render:build` and Start: `npm run render:start` instead.
 3. Set environment variables:
 
 | Variable | Example |
