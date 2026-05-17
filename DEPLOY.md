@@ -12,7 +12,11 @@ Default admin after seed: **admin** / **admin123**
 ## 2. API on Render
 
 1. Connect this repo to [Render](https://render.com).
-2. Use `render.yaml` or create a **Web Service** with root directory `server`.
+2. Use `render.yaml` or create a **Web Service** with:
+   - **Root Directory:** `server`
+   - **Build Command:** `npm ci`
+   - **Start Command:** `npm start`
+   - **Environment:** `NODE_VERSION` = `20` (also set in `server/.node-version`)
 3. Set environment variables:
 
 | Variable | Example |
