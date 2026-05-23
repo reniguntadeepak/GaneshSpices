@@ -2,9 +2,9 @@ services:
   - type: web
     name: ganesh-spices-api
     runtime: node
-    # Repo root (Root Directory on dashboard must be EMPTY)
-    buildCommand: npm ci --prefix server
-    startCommand: npm start --prefix server
+    rootDir: server
+    buildCommand: bash render-build.sh
+    startCommand: npm start
     healthCheckPath: /api/health
     envVars:
       - key: NODE_VERSION

@@ -12,22 +12,22 @@ Default admin after seed: **admin** / **admin123**
 ## 2. API on Render
 
 1. Connect this repo to [Render](https://render.com).
-2. Create a **Web Service** with these settings (must match exactly):
+2. Create a **Web Service** — use **only** this layout:
 
    | Setting | Value |
    |---------|--------|
-   | **Root Directory** | *(leave empty)* |
-   | **Build Command** | `npm ci --prefix server` |
-   | **Start Command** | `npm start --prefix server` |
+   | **Root Directory** | `server` |
+   | **Build Command** | `bash render-build.sh` |
+   | **Start Command** | `npm start` |
    | **NODE_VERSION** (env) | `20` |
 
-   **Important:** If your deploy log shows paths like `/opt/render/project/src/server/...`, you must use the table above (repo root + `--prefix server`). Do **not** set Root Directory to `server` and also use `--prefix server` — pick one layout only.
+   Do **not** use `--prefix server` — set **Root Directory** to `server` instead.
 
-   Alternative (only if Root Directory is `server`):
+   Ensure `server/package-lock.json` uses `registry.npmjs.org` (not a private npm mirror). The repo includes `server/.npmrc` to force the public registry on Render.
 
-   | **Root Directory** | `server` |
-   | **Build Command** | `npm ci` |
-   | **Start Command** | `npm start` |
+   Before redeploying: **Settings → Build & Deploy → Clear build cache**, then **Manual Deploy**.
+
+   In the **build** log you must see: `API dependencies OK`. If build succeeds but that line is missing, dependencies were not installed.
 3. Set environment variables:
 
 | Variable | Example |
